@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../traineets"
+		},
+		{
+			"path": "../ts_tasks-main"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

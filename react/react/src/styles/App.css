@@ -1,0 +1,28 @@
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+#root{
+  display: flex;
+  justify-content: center;
+}
+.App{
+  width: 800px;
+  background-color: rgb(219, 12, 23);
+  
+}
+.post{
+  display: flex;
+  margin: 10px;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  color: blue;
+  border: 1px solid  #fff;
+  
+}
+.post__btns{
+  background-color: orange;
+}
