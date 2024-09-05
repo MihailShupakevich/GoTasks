@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strings"
 )
 
 func main() {
 	//fmt.Println(_2task("AAADDDGFFFAAR"))
 	//fmt.Println(getMatchedNumbers([]int{1, 3, 3, 5}, []int{3, 5, 5, 6}))
 	//fmt.Println(createBoard(8))
-	fmt.Println(cleaned([]string{"hello", "bcda", "bruh"}))
+	//fmt.Println(clean([]string{"nap", "pan", "ear", "are", "era", "cheaters", "hectares", "teachers"}))
+	fmt.Println(yourSet([]string{"abc", "def", "ghi", "abc", "ghi"}))
 }
 func _2task(x string) string {
 	// 2
@@ -95,24 +97,58 @@ func createBoard(countOfBox int) string {
 	return result
 }
 
-func cleaned(x5 []string) []string {
+func clean(arr []string) []string {
+	anagrams := make(map[string]bool)
+	result := make([]string, 0)
 
-	for i := range x5 {
-		r := []rune(x5[i])
-		sort.Slice(r, func(i, j int) bool { return r[i] < r[j] })
-
+	for _, word := range arr {
+		sortedWord := sortWord(word)
+		if !anagrams[sortedWord] {
+			anagrams[sortedWord] = true
+			result = append(result, word)
+		}
 	}
-	sort.Strings(x5)
-	return x5
+
+	return result
+	// Анаграммы – это слова, у которых те же буквы в том же количестве,
+	// но они располагаются в другом порядке.
+	// Например:
+	// nap - pan
+	// ear - are - era
+	// cheaters - hectares - teachers
+	// Напишите функцию clean(arr), которая возвращает массив слов,
+	// очищенный от анаграмм.
+	// Из каждой группы анаграмм должно остаться только одно слово,
+	// не важно какое.
+
 }
 
-// Анаграммы – это слова, у которых те же буквы в том же количестве,
-// но они располагаются в другом порядке.
-// Например:
-// nap - pan
-// ear - are - era
-// cheaters - hectares - teachers
-// Напишите функцию clean(arr), которая возвращает массив слов,
-// очищенный от анаграмм.
-// Из каждой группы анаграмм должно остаться только одно слово,
-// не важно какое.
+func sortWord(word string) string {
+	letters := strings.Split(word, "")
+	sort.Strings(letters)
+	return strings.Join(letters, "")
+}
+
+func yourSet(setArr []string) []string {
+	//for i := 0; i < len(setArr); i++ {
+	//	stringArr := string(setArr[i])
+	//	newSetArr := make([]string, 0)
+	//	newSetArr = append(newSetArr,stringArr)
+	//}  (конвертизация в строку, если мы имеем дело со срезом чисел)
+	sort.Strings(setArr)
+	fmt.Println(setArr)
+	sortedSet := make([]string, 0)
+	for i := 0; i < len(setArr)-1; i++ {
+		if setArr[i] == setArr[i+1] {
+			fmt.Println("1", setArr[i])
+			continue
+		}
+		if setArr[i] != setArr[i+1] {
+			fmt.Println("2", setArr[i])
+			sortedSet = append(sortedSet, setArr[i])
+		}
+
+	}
+	sortedSet = append(sortedSet, setArr[+(len(setArr)-1)])
+	return sortedSet
+}
